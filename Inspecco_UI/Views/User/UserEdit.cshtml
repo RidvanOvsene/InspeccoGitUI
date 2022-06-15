@@ -1,0 +1,68 @@
+﻿@model Inspecco_UI.Models.Dtos.UserDto
+@{
+    ViewData["Title"] = "UserEdit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+  }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.8.0/full-all/ckeditor.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" />
+
+    <section id="basic-vertical-layouts">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Düzenle</h4>
+                </div>
+                <div class="card-body">
+                    <form class="form form-vertical" enctype="multipart/form-data" asp-action="UserEdit" asp-controller="User" method="post">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="mb-1">
+                                    <input type="text" autocomplete="off" style="display:none !important" id="first-name-vertical" class="form-control" name="UserId" value="@Model.UserId" />
+                                    <label class="form-label" for="first-name-vertical">Adı Soyadı</label>
+                                    <input autocomplete="off" id="name-vertical" class="form-control" name="NameSurname" value="@Model.NameSurname" />
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="mb-1">
+                                    <label class="form-label" for="first-name-vertical">Kullanıcı Adı</label>
+                                    <input type="text" autocomplete="off" id="first-name-vertical" class="form-control" name="UserName" value="@Model.UserName" />
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="mb-1">
+                                    <label class="form-label" for="first-name-vertical">Rol Adı</label><br />
+                                    <select name="RolId" style="height:35px;width:100%;font-size: 22px;" class="form-select form-select-lg" id="selectLarge">
+                                        @foreach (var RolItem in ViewBag.Rol)
+                                        {
+                                            if (ViewBag.SelectedUser.RolId == RolItem.RolId)
+                                            {
+                                                <option selected value="@RolItem.RolId">@RolItem.RolName</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@RolItem.RolId">@RolItem.RolName</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="mb-1">
+                                    <label class="form-label" for="first-name-vertical">Telefon No</label>
+                                    <input autocomplete="off" id="name-vertical" class="form-control" name="Contact" value="@Model.Contact" />
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary me-1">Kaydet</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+

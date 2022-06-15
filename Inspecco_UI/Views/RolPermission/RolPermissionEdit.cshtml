@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "RolPermissionEdit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.8.0/full-all/ckeditor.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" />
+
+<section id="basic-vertical-layouts">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Düzenle</h4>
+                </div>
+                <div class="card-body">
+                    <form class="form form-vertical" enctype="multipart/form-data" asp-action="RolPermissionEdit" asp-controller="RolPermission" method="post">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="mb-1">
+                                    <label class="form-label" for="first-name-vertical"><h6>Rol Adı</h6></label><br />
+                                    <input type="text" autocomplete="off" style="display:none !important" id="first-name-vertical" class="form-control" name="RolPermissionId" value="@ViewBag.SelectedPermission.RolPermissionId" />
+                                    <label>@ViewBag.SelectedPermission.RolName</label>
+                                </div>
+                            </div>
+                                 <div class="col-4">
+                                <div class="mb-1">
+                                    <label class="form-label" for="first-name-vertical"><h6>Yetki Adı</h6></label><br />
+                                    <select name="PermissionId" style="height:31px;width:231px;font-size: 19px;" class="form-select form-select-lg" id="selectLarge">
+                                        @foreach (var PermissionItem in ViewBag.Permission)
+                                        {
+                                            @if (ViewBag.SelectedPermission.PermissionId == PermissionItem.PermissionId)
+                                            {
+                                                <option selected value="@PermissionItem.PermissionId">@PermissionItem.PermissionName</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@PermissionItem.PermissionId">@PermissionItem.PermissionName</option>
+                                            }
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="col-12" style=" margin-top: 2%;">
+                                <button type="submit" class="btn btn-primary me-1">Kaydet</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

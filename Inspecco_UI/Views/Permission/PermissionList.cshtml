@@ -1,0 +1,39 @@
+﻿@model List<Inspecco_UI.Models.Permission>
+@{
+    ViewData["Title"] = "RolList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var Permission = ViewData["PermissionList"] as SeesionModel;
+}
+
+<div class="row" id="table-responsive">
+    <div class="col-12">
+        <div class="card">
+
+            <div class="table-responsive">
+                <table class="table mb-0">
+                    <thead>
+                        <tr>
+                            @if (Permission.Role.Permission.FirstOrDefault(a => a.PermissionName == "Read") != null)
+                            {
+                                <th scope="col" class=" col-xl-3">Yetki</th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                @if (Permission.Role.Permission.FirstOrDefault(a => a.PermissionName == "Read") != null)
+                                {
+                                    <td class="col-xl-3">@item.PermissionName</td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

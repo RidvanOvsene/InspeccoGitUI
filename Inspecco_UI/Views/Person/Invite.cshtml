@@ -1,0 +1,47 @@
+﻿@model Inspecco_UI.Models.Person
+@{
+    ViewData["Title"] = "Invite";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var Permission = ViewData["PermissionList"] as SeesionModel;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Invite</title>
+
+
+</head>
+
+<center>
+    <div class="col-md-12 col-12">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title">Şirket Seçiniz</h2>
+            </div>
+            <form class="form form-vertical" enctype="multipart/form-data" asp-action="Invite" asp-controller="Person" method="post">
+
+                <div class="card-body">
+                    <div class="mb-1">
+                        <input style="display:none" type="text" autocomplete="off" id="first-name-vertical" class="form-control" name="PersonId" value="@Model.PersonId" />
+
+                        <select name="CompanyId" style="height:41px;width:100%;font-size: 22px;" class="form-select form-select-lg" id="selectLarge">
+                            @foreach (var CompanyItem in ViewBag.Company)
+                            {
+
+                                <option value="@CompanyItem.CompanyId">@CompanyItem.CompanyName</option>
+
+                            }
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <button style="margin-top: 11px;" type="submit" class="btn btn-primary me-1 btn-lg">Kaydet</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</center>

@@ -1,0 +1,45 @@
+﻿@model Inspecco_UI.Models.Company
+@{
+    ViewData["Title"] = "CompanyCreate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.8.0/full-all/ckeditor.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css" />
+
+@if (Model == null)
+{
+    <section id="basic-vertical-layouts">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Ekle</h4>
+                    </div>
+                    <div class="card-body">
+                        <form class="form form-vertical" enctype="multipart/form-data" asp-action="CompanyCreate" asp-controller="Company" method="post">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="mb-1">
+                                        <label class="form-label" for="first-name-vertical">Firma Adı</label>
+                                        <input type="text" autocomplete="off" id="first-name-vertical" class="form-control" name="CompanyName" value="" />
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="mb-1">
+                                        <label class="form-label" for="first-name-vertical">Açıklama</label>
+                                        <input type="text" autocomplete="off" id="first-name-vertical" class="form-control" name="CompanyDescription" value="" />
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary me-1">Kaydet</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}

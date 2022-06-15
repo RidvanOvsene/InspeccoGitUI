@@ -1,0 +1,49 @@
+﻿@model Inspecco_UI.Models.RolPermission
+@{
+    ViewData["Title"] = "RolPermissionCreate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+<section id="basic-vertical-layouts">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Yeni Kayıt Oluştur</h4>
+                </div>
+                <div class="card-body">
+                    <form class="form form-vertical" enctype="multipart/form-data" asp-action="RolPermissionCreate" asp-controller="RolPermission" method="post">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="mb-1">
+                                    <label class="form-label" for="first-name-vertical"><h6>Rol Adı</h6></label><br />
+                                    <select name="RolId" style="height:31px;width:231px;font-size: 19px;" class="form-select form-select-lg" id="selectLarge">
+                                        @foreach (var RolItem in ViewBag.Rol)
+                                        {
+                                            <option value="@RolItem.RolId">@RolItem.RolName</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="mb-1">
+                                    <label class="form-label" for="first-name-vertical"><h6>Yetki Adı</h6></label><br />
+                                    <select name="PermissionId" style="height:31px;width:231px;font-size: 19px;" class="form-select form-select-lg" id="selectLarge">
+                                        @foreach (var PermissionItem in ViewBag.Permission)
+                                        {
+                                            <option value="@PermissionItem.PermissionId">@PermissionItem.PermissionName</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="col-12" style=" margin-top: 2%;">
+                                <button type="submit" class="btn btn-primary me-1">Kaydet</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

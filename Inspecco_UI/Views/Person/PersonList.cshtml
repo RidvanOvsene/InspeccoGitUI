@@ -1,0 +1,83 @@
+﻿@model List<Inspecco_UI.Models.Dtos.PersonDto>
+@{
+    ViewData["Title"] = "PersonList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var Permission = ViewData["PermissionList"] as SeesionModel;
+}
+<div class="col-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+    @if (Permission.Role.Permission.FirstOrDefault(a => a.PermissionName.Trim() == "Create") != null)
+    {
+        <a style="margin-left: -1em; margin-bottom: 1em; width: 5em;" href="~/Person/PersonCreate" class="btn btn-primary">Ekle</a>
+    }
+</div>
+<div class="row" id="table-responsive">
+    <div class="col-12">
+        <div class="card">
+
+            <div class="table-responsive">
+                <table class="table mb-0">
+                    <thead>
+                        <tr>
+                            @if (Permission.Role.Permission.FirstOrDefault(a => a.PermissionName == "Update") != null)
+                            {
+                                <th scope="col" class="t col-xl-1">Düzenle</th>
+
+                            }
+                            @if (Permission.Role.Permission.FirstOrDefault(a => a.PermissionName == "Delete") != null)
+                            {
+                                <th scope="col" class="t col-xl-1">Sil</th>
+                            }
+                            @if (Permission.Role.Permission.FirstOrDefault(a => a.PermissionName == "Create") != null)
+                            {
+                                <th scope="col" class="t col-xl-1.5">Davet Et</th>
+                            }
+                            @if (Permission.Role.Permission.FirstOrDefault(a => a.PermissionName == "Read") != null)
+                            {
+                                <th scope="col" class=" col-xl-2"> Adı</th>
+                                <th scope="col" class=" col-xl-2">Soyadı</th>
+                                <th scope="col" class=" col-xl-2">Cep Telefonu</th>
+                                <th scope="col" class=" col-xl-2">Firma Adı</th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+
+                                @if (Permission.Role.Permission.FirstOrDefault(a => a.PermissionName == "Update") != null)
+                                {
+                                    <td class="col-xl-1">
+                                        <a href="/Person/PersonEdit/@item.PersonId" class=" btn btn-outline-success btn-sm "><i data-feather='edit'></i>Düzenle </a>
+                                    </td>
+                                }
+
+                                @if (Permission.Role.Permission.FirstOrDefault(a => a.PermissionName == "Delete") != null)
+                                {
+                                    <td class="col-xl-1">
+                                        <a href="/Person/PersonDelete/@item.PersonId" class="btn btn-sm btn-outline-danger "><i data-feather='trash-2'></i> Sil</a>
+                                    </td>
+                                }
+
+                                @if (Permission.Role.Permission.FirstOrDefault(a => a.PermissionName.Trim() == "Create") != null)
+                                {
+                                    <td class="col-xl-1.5">
+                                        <a style="width:5em;" href="/Person/Invite/@item.PersonId" class="btn btn-sm btn-outline-warning "> Davet Et</a>
+                                    </td>
+                                }
+                                @if (Permission.Role.Permission.FirstOrDefault(a => a.PermissionName == "Read") != null)
+                                {
+                                    <td class="col-xl-2">@item.PersonName</td>
+                                    <td colspan="1">@Html.Raw(item.PersonSurname)</td>
+                                    <td class="col-xl-3">@item.Contact</td>
+                                    <td class="col-xl-2">@item.CompanyName</td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!DOCTYPE html>
